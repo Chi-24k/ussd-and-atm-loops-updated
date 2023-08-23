@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+  // Bank USSD Code Request
+  let ussdCode;
+  do {
+    ussdCode = prompt('Please enter UBank USSD Code');
+  } while (ussdCode != 1234);
+
+  // User enters correct USSD code
+  let name = prompt("Welcome to UBank USSD Code Services, please enter your name");
+  let codeOptions;
+
+  do {
+    codeOptions = prompt(`Hello ${name}! What would you like to do today?
+      1.Transfer
+      2. Airtime Recharge
+      3. Data Recharge`);
+  } while (codeOptions < 1 || codeOptions > 3);
+
+  switch (parseInt(codeOptions)) {
+    case 1: // Transfer option
+      alert(`${name}, you have selected Transfer`);
+      let transferOptions;
+
+      do {
+        transferOptions = prompt(`Please choose an option: 
+        1.Transfer to UBank
+        2.Transfer to Other Banks`);
+      } while (transferOptions < 1 || transferOptions > 2);
+
+      if (transferOptions == 1) {
+        alert(`Thank you ${name} for blessing us with more money`);
+        let acctNumber;
+        do {
+          acctNumber = prompt("Please enter your account number: ");
+        } while (isNaN(acctNumber));
+
+        alert(`This account belongs to ${name}`);
+        let transferDeposit;
+        do {
+          transferDeposit = prompt(`How much do you wish to transfer?`);
+        } while (isNaN(transferDeposit));
+
+        alert(`You have successfully transferred ${transferDeposit} naira into ${name}'s account yay!`);
+      }
+
+      if (transferOptions == 2) {
+        let otherBankOptions;
+
+        do {
+          otherBankOptions = prompt(`Please select the bank to transfer to:
+          1. Standard Chartered Bank
+          2. Standbic IBTC Bank
+          3. Access Bank
+          4. UBA Bank
+          5. First Bank
+          6. Guaranty Trust Bank
+          7. Opay `);
+        } while (otherBankOptions < 1 || otherBankOptions > 7);
+
+        let acctName = prompt("Please enter account name ");
+        let acctNumber;
+        do {
+          acctNumber = prompt("Please enter account number ");
+        } while (isNaN(acctNumber));
+
+        alert(`This account belongs to ${acctName}`);
+        let transferDeposit;
+        do {
+          transferDeposit = prompt(`How much do you wish to transfer?`);
+        } while (isNaN(transferDeposit));
+
+        alert(`Congratulations ${name}! You have successfully transferred ${transferDeposit} naira into ${acctName}'s account yay!`);
+      }
+      break;
+
+    case 2: // Airtime Recharge option
+      alert(`${name}, you have selected Airtime Recharge`);
+      let networkOptions;
+
+      do {
+        networkOptions = prompt(`Please select your network provider:
+          1. MTN
+          2. Airtel
+          3. 9mobile
+          4. Glo`);
+      } while (networkOptions < 1 || networkOptions > 4);
+
+      let phoneNumber;
+      do {
+        phoneNumber = prompt("Enter phone number ");
+      } while (isNaN(phoneNumber));
+
+      let rechargeCard;
+      do {
+        rechargeCard = prompt("How much do you want to recharge? ");
+      } while (isNaN(rechargeCard));
+
+      alert(`Congratulations ${name}! Your airtime recharge of ${rechargeCard} naira to ${phoneNumber} was successful.`);
+      break;
+
+    case 3: // Data Recharge option
+      alert(`${name}, you have selected Data Recharge`);
+      let dataNetworkOptions;
+
+      do {
+        dataNetworkOptions = prompt(`Please network provider:
+          1. MTN
+          2. Airtel
+          3. 9mobile
+          4. Glo`);
+      } while (dataNetworkOptions < 1 || dataNetworkOptions > 4);
+
+      let dataPhoneNumber;
+      do {
+        dataPhoneNumber = prompt("Enter phone number ");
+      } while (isNaN(dataPhoneNumber));
+
+      let dataRechargeCard;
+      do {
+        dataRechargeCard = prompt("How much data do you want? ");
+      } while (isNaN(dataRechargeCard));
+
+      alert(`Congratulations ${name}! Your data recharge of ${dataRechargeCard}MB to ${dataPhoneNumber} was successful.`);
+      break;
+  }
+
+  </script>
+</body>
+</html>

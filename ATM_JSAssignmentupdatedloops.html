@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+  // Won't you like to know your user's name...
+  let name = prompt('Hey there!, what is your name please.');
+  let AtmPin, bankOptions;
+
+  do {
+    AtmPin = +prompt(`Hello ${name}, please input your pin `);
+    if (AtmPin != 1234) {
+      alert(`You are not ${name}. Goodbye`);
+      close();
+    }
+  } while (isNaN(AtmPin));
+
+  let initBalance = 1000;
+  let savingsBalance = 20000;
+
+  do {
+    bankOptions = +prompt(`Hello ${name}!
+      Welcome to UBank, what would you like to do today?
+      1. Balance Enquiry
+      2. Withdrawal
+      3. Transfer
+      4. Exit`);
+  } while (bankOptions < 1 || bankOptions > 4);
+
+  switch (bankOptions) {
+  case 1: // Balance Enquiry
+    alert(`${name}, you have selected Balance Enquiry`);
+    let acctOptions;
+
+    do {
+      acctOptions = +prompt(`Which account balance would you like to view?
+      1. Savings
+      2. Current`);
+    } while (acctOptions !== 1 && acctOptions !== 2);
+
+    if (acctOptions === 1) {
+      alert(`${name}, your savings balance is NGN ${savingsBalance}`);
+    } else if (acctOptions === 2) {
+      alert(`${name}, your current balance is NGN ${initBalance}`);
+    }
+    break;
+
+  case 2: // Withdrawal
+    alert(`${name}, you have selected Withdrawal`);
+    let withdrawOptions;
+
+    do {
+      withdrawOptions = +prompt(`Which account would you like to withdraw from?
+      1. Savings
+      2. Current`);
+    } while (withdrawOptions !== 1 && withdrawOptions !== 2);
+
+    let amount;
+
+    do {
+      amount = prompt("Enter amount to withdraw ");
+      amount = parseFloat(amount);
+    } while (isNaN(amount));
+
+    if (withdrawOptions === 1) {
+      if (amount > savingsBalance) {
+        alert(`Sigh, insufficient funds ${name}...man can only dream for now`);
+      } else {
+        savingsBalance -= amount;
+        alert(`${name}, you have successfully withdrawn NGN ${amount}
+        Your savings account balance is now NGN ${savingsBalance}`);
+      }
+    } else if (withdrawOptions === 2) {
+      if (amount > initBalance) {
+        alert(`Sigh, insufficient funds ${name}...think it's time to break that savings account`);
+      } else {
+        initBalance -= amount;
+        alert(`${name}, you have successfully withdrawn NGN ${amount}
+        Your current account balance is now NGN ${initBalance}`);
+      }
+    }
+    break;
+
+  case 3: // Transfer
+    alert(`${name}, you have selected Transfer`);
+    let transferOptions;
+
+    do {
+      transferOptions = +prompt(`Please choose an option: 
+      1.Transfer to UBank(deposit)
+      2.Transfer to Other Banks`);
+    } while (transferOptions !== 1 && transferOptions !== 2);
+
+    if (transferOptions === 1) {
+      alert(`Thank you ${name} for blessing us with more money`);
+      do {
+        transferMoney = prompt("How much would you like to deposit please ");
+        transferMoney = parseFloat(transferMoney);
+      } while (isNaN(transferMoney));
+
+      initBalance += transferMoney;
+      alert(`Congratulations ${name}! You are now NGN ${transferMoney} richer!
+      Your current account balance is now NGN ${initBalance}`);
+    } else if (transferOptions === 2) {
+      let otherBankOptions;
+
+      do {
+        otherBankOptions = +prompt(`Please select the bank to transfer to:
+        1. Standard Chartered Bank
+        2. Standbic IBTC Bank
+        3. Access Bank
+        4. UBA Bank
+        5. First Bank
+        6. Guaranty Trust Bank
+        7. Opay `);
+      } while (otherBankOptions < 1 || otherBankOptions > 7);
+
+      let acctName = prompt("Please enter account name ");
+      let acctNumber = prompt("Please enter account number ");
+      alert(`This account belongs to ${acctName}`);
+
+      do {
+        transferDeposit = prompt(`How much do you wish to transfer?`);
+        transferDeposit = parseFloat(transferDeposit);
+      } while (isNaN(transferDeposit));
+
+      alert(`Congratulations ${name}! You have successfully transferred ${transferDeposit} naira into ${acctName}'s account yay!`);
+    }
+    break;
+
+  case 4:
+    alert(`Dearest ${name}, thank you for using UBank ATM
+    Do have a great day!`);
+    close();
+    break;
+
+  default:
+    alert(`Invalid Option chief. Goodbye`);
+    close();
+    break;
+  }
+
+  </script>
+</body>
+</html>
